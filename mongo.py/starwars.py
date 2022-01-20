@@ -1,7 +1,6 @@
 import pymongo
 import requests
 
-
 class Starships:
     """
         This class connects to the StarWars database and pulls the starships
@@ -20,8 +19,9 @@ class Starships:
         self.starships = requests.get("https://swapi.dev/api/starships/?page=1").json()
 
     # Inserts all the results of the starship page to the starships collection
-    def insert_all_page(self, data):
+    @property
 
+    def insert_all_page(self, data):
         for i in range(len(data['results'])):
             self.db.starships.insert_one(data['results'][i])
 
